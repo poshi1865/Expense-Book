@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/color_white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:id="@+id/expenditureViewRelativeLayout" android:paddingLeft="10.0sp" android:paddingTop="10.0sp" android:paddingRight="10.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/expenseLabelView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Monthly Expenditure"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="17.0sp" />
+
+        <TextView
+            android:id="@+id/total_ft_amount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/expenseLabelView"
+            android:fontFamily="sans-serif"
+            android:text="0.0"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="22.0sp" />
+    </RelativeLayout>
+
+    <Spinner
+        android:id="@+id/monthSpinnerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/expenditureViewRelativeLayout"
+        android:minHeight="48dp"
+        android:padding="10.0sp"
+        android:textAlignment="center" />
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/monthSpinnerView">
+        <androidx.cardview.widget.CardView android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="10.0dip" app:cardBackgroundColor="@color/color_two" app:cardCornerRadius="10.0dip">
+            <ScrollView android:id="@+id/expensesScrollView" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <TextView android:textSize="18.0sp" android:textColor="@color/blue_1" android:id="@+id/expensesTextView" android:padding="10.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="sans-serif" />
+            </ScrollView>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</RelativeLayout>

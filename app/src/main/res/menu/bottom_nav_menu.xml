@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/rupee_icon" android:id="@+id/expenditure" android:title="Expenditure" />
+    <item android:icon="@drawable/insight_icon" android:id="@+id/insight" android:title="Insight" />
+    <item android:icon="@drawable/budget_icon" android:id="@+id/budget" android:title="Budget" />
+</menu>
