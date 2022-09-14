@@ -50,7 +50,7 @@ public class SecondFragment extends Fragment {
         valueLineSeries.setColor(Color.parseColor(colors[1]));
         BankMessageLoader bankMessageLoader = new BankMessageLoader(getContext(), "KOTAKB");
         this.bankMessageLoader = bankMessageLoader;
-        this.bankMessages = bankMessageLoader.loadMessages();
+        this.bankMessages = bankMessageLoader.loadMessages("MMM");
         this.monthlyAmount = new int[12];
         int b;
         for (b = 0; b < 12; b++)
