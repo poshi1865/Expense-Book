@@ -19,41 +19,68 @@
 
         <TextView
             android:id="@+id/expenseLabelView"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
             android:text="Monthly Expenditure"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="17.0sp" />
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/total_ft_amount"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/expenseLabelView"
-            android:fontFamily="sans-serif"
-            android:text="0.0"
             android:textAlignment="center"
+            android:text="0.0"
+            android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="22.0sp" />
+            android:textSize="23sp" />
     </RelativeLayout>
 
-    <Spinner
-        android:id="@+id/monthSpinnerView"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="8"
-        android:layout_below="@id/expenditureViewRelativeLayout"
-        android:minHeight="48dp"
-        android:padding="10.0sp"
-        android:textAlignment="center" />
+        android:padding="10dp"
+        android:layout_below="@id/expenditureViewRelativeLayout">
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".28"
+            android:background="@drawable/spinner_background"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/monthSpinnerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:spinnerMode="dropdown"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@mipmap/down" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="82"
         android:layout_below="@id/monthSpinnerView">
+
         <androidx.cardview.widget.CardView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -65,7 +92,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
 
-                <TextView android:textSize="18.0sp"
+                <TextView
+                    android:textSize="16.0sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blue_1"

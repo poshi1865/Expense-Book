@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,16 +45,29 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
 
     private Double totalAmountForCurrentMonth = Double.valueOf(0.0D);
 
-    TextView totalAmountForCurrentMonthView;
+    private TextView totalAmountForCurrentMonthView;
 
-    Typeface typeface;
+    private Typeface typeface_amiri_regular;
+    private Typeface typeface_amiri_bold;
+    private Typeface typeface_tenk_reasons;
 
     public void onViewCreated(View paramView, Bundle paramBundle) {
+        //set typefaces
+        this.typeface_amiri_regular = ResourcesCompat.getFont(getContext(), R.font.amiri_regular);
+        this.typeface_amiri_bold = ResourcesCompat.getFont(getContext(), R.font.amiri_bold);
+        this.typeface_tenk_reasons = ResourcesCompat.getFont(getContext(), R.font.tenk_reasons_font);
+
+        //variables for the "Expenditure in MMM" and "Total amount" view
         this.monthHeading = (TextView)paramView.findViewById(R.id.expenseLabelView);
+        //this.monthHeading.setTypeface(typeface_amiri_bold);
         this.totalAmountForCurrentMonthView = (TextView)paramView.findViewById(R.id.total_ft_amount);
+        //this.totalAmountForCurrentMonthView.setTypeface(typeface_amiri_bold);
+
         this.expensesScrollView = (ScrollView)paramView.findViewById(R.id.expensesScrollView);
+
+        //object for the expenditure text view (the text in the main card view)
         this.expensesTextView = (TextView)paramView.findViewById(R.id.expensesTextView);
-        this.typeface = ResourcesCompat.getFont(getContext(), R.font.tenk_reasons_font);
+        this.expensesTextView.setTypeface(this.typeface_tenk_reasons);
 
         //Create the bankMessagesArray list and load messages to it
         this.bankMessagesArray = new ArrayList<>();
@@ -83,6 +95,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         this.totalAmountForCurrentMonth = Double.valueOf(0.0D);
         this.expensesTextView.setText("");
 
+        //prevDate variable which helps in sorting the expenditure according to dates
         String prevDate = "";
 
         for (int b = 0; b < this.bankMessagesArray.size(); b++) {
@@ -94,7 +107,6 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
             double d = this.bankMessagesArray.get(b).getAmount();
 
             this.totalAmountForCurrentMonth = Double.valueOf(this.totalAmountForCurrentMonth.doubleValue() + d);
-            this.expensesTextView.setTypeface(this.typeface);
 
             if (!messageDate.equals(prevDate)) {
                 this.expensesTextView.append(messageDate + "\n");

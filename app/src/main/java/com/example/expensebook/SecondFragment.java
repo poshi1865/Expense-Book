@@ -48,7 +48,7 @@ public class SecondFragment extends Fragment {
         this.valueLineChart = (ValueLineChart)paramView.findViewById(R.id.valueLineChart);
         ValueLineSeries valueLineSeries = new ValueLineSeries();
         valueLineSeries.setColor(Color.parseColor(colors[1]));
-        BankMessageLoader bankMessageLoader = new BankMessageLoader(getContext(), "KOTAKB");
+        BankMessageLoader bankMessageLoader = new BankMessageLoader(getContext(), "SBI");
         this.bankMessageLoader = bankMessageLoader;
         this.bankMessages = bankMessageLoader.loadMessages("MMM");
         this.monthlyAmount = new int[12];

@@ -4,6 +4,8 @@
     <color name="Java">#ff29b6f6</color>
     <color name="Python">#ff66bb6a</color>
     <color name="R">#ffffa726</color>
+    <color name="darkGrey">#a9a9a9</color>
+
     <color name="abc_decor_view_status_guard">#ff000000</color>
     <color name="abc_decor_view_status_guard_light">#ffffffff</color>
     <color name="abc_search_url_text_normal">#ff7fa87f</color>
