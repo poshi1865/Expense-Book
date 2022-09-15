@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@color/color_white" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <RelativeLayout android:id="@+id/expenditureViewRelativeLayout" android:paddingLeft="10.0sp" android:paddingTop="10.0sp" android:paddingRight="10.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+<LinearLayout
+    android:background="@color/color_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/expenditureViewRelativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:paddingLeft="10.0sp"
+        android:paddingTop="10.0sp"
+        android:paddingRight="10.0sp">
 
         <TextView
             android:id="@+id/expenseLabelView"
@@ -28,16 +42,37 @@
     <Spinner
         android:id="@+id/monthSpinnerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="8"
         android:layout_below="@id/expenditureViewRelativeLayout"
         android:minHeight="48dp"
         android:padding="10.0sp"
         android:textAlignment="center" />
-    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/monthSpinnerView">
-        <androidx.cardview.widget.CardView android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="10.0dip" app:cardBackgroundColor="@color/color_two" app:cardCornerRadius="10.0dip">
-            <ScrollView android:id="@+id/expensesScrollView" android:layout_width="fill_parent" android:layout_height="fill_parent">
-                <TextView android:textSize="18.0sp" android:textColor="@color/blue_1" android:id="@+id/expensesTextView" android:padding="10.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="sans-serif" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="82"
+        android:layout_below="@id/monthSpinnerView">
+        <androidx.cardview.widget.CardView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10.0dip"
+            app:cardBackgroundColor="@color/color_two"
+            app:cardCornerRadius="10.0dip">
+            <ScrollView
+                android:id="@+id/expensesScrollView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView android:textSize="18.0sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue_1"
+                    android:id="@+id/expensesTextView"
+                    android:padding="10.0sp"
+                    android:fontFamily="sans-serif" />
             </ScrollView>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

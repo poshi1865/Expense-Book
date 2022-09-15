@@ -87,7 +87,7 @@ public class BankMessageLoader {
 
                     //if we find the amount then set it to the BankMessage object
                     if (matcher.find()) {
-                        bankMessage.setAmount(Double.parseDouble(matcher.group().substring(3)));
+                        bankMessage.setAmount(Double.parseDouble(matcher.group().substring(2)));
 
                         //Matcher object to find out with whom the transaction was done
                         Matcher matcher1 = Pattern.compile("to .+?(?= Ref)").matcher(bankMessage.getMessageBody());

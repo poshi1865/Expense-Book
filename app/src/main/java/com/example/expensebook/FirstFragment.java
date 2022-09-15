@@ -55,7 +55,7 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
         this.totalAmountForCurrentMonthView = (TextView)paramView.findViewById(R.id.total_ft_amount);
         this.expensesScrollView = (ScrollView)paramView.findViewById(R.id.expensesScrollView);
         this.expensesTextView = (TextView)paramView.findViewById(R.id.expensesTextView);
-        this.typeface = ResourcesCompat.getFont(getContext(), R.font.going_to_school_font);
+        this.typeface = ResourcesCompat.getFont(getContext(), R.font.tenk_reasons_font);
 
         //Create the bankMessagesArray list and load messages to it
         this.bankMessagesArray = new ArrayList<>();
@@ -80,27 +80,30 @@ public class FirstFragment extends Fragment implements AdapterView.OnItemSelecte
     //This function goes through all the objects in the bankMessagesArray and displays
     private void goThroughAllMessagesAndDisplay(String month) {
         this.bankMessagesArray = this.bankMessageLoader.loadMessages(month);
-        String str = "";
         this.totalAmountForCurrentMonth = Double.valueOf(0.0D);
         this.expensesTextView.setText("");
 
+        String prevDate = "";
+
         for (int b = 0; b < this.bankMessagesArray.size(); b++) {
-            String messageMonth = this.bankMessagesArray.get(b).getMonthSent();
+            String messageDate = this.bankMessagesArray.get(b).getDateSent();
             String messageYear = this.bankMessagesArray.get(b).getYearSent();
 
-            messageMonth = this.bankMessagesArray.get(b).getDateSent();
-            messageYear = this.bankMessagesArray.get(b).getPersonWithWhomTransactionWasDone();
+            String personName = this.bankMessagesArray.get(b).getPersonWithWhomTransactionWasDone();
+
             double d = this.bankMessagesArray.get(b).getAmount();
 
             this.totalAmountForCurrentMonth = Double.valueOf(this.totalAmountForCurrentMonth.doubleValue() + d);
             this.expensesTextView.setTypeface(this.typeface);
 
-            if (!messageMonth.equals(str))
-                this.expensesTextView.append(messageMonth + "\n");
+            if (!messageDate.equals(prevDate)) {
+                this.expensesTextView.append(messageDate + "\n");
+                prevDate = messageDate;
+            }
 
             NumberFormat numberFormat1 = NumberFormat.getCurrencyInstance(new Locale("en", "in"));
             this.expensesTextView.append("    " + numberFormat1.format(Double.valueOf(d)) + "   --   ");
-            this.expensesTextView.append(messageYear);
+            this.expensesTextView.append(personName);
             this.expensesTextView.append(" \n");
         }
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("en", "in"));
