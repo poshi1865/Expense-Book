@@ -4,6 +4,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.regex.*;
 import java.lang.*;
 
@@ -48,9 +49,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         secondFragment = new SecondFragment();
         thirdFragment = new ThirdFragment();
 
-
-        //TextView text_amt = findViewById(R.id.total_ft_amount);
-
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.expenditure);
@@ -59,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         final int REQUEST_CODE_ASK_PERMISSIONS = 123;
         ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.READ_SMS"}, REQUEST_CODE_ASK_PERMISSIONS);
         //if(ContextCompat.checkSelfPermission(getBaseContext(), "android.permission.READ_SMS") == PackageManager.PERMISSION_GRANTED) {
-        Log.v("WOW", "INSIDE CURSOR CODE");
     }
 
     //if(sent_to.equals("rapido")  travel++

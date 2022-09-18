@@ -1,5 +1,6 @@
 package com.example.expensebook;
 
+import android.app.Application;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -8,9 +9,14 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+/* This class is responsible for loading messages for a particular month
+ into an ArrayList of type BankMessage and returning the array
+ */
 public class BankMessageLoader {
     private String BANK_REGULAR_EXPRESSION;
     private final String REGULAR_EXPRESSION_FOR_AMOUNT = "Rs\\d+(\\.\\d+)?";
@@ -40,10 +46,6 @@ public class BankMessageLoader {
                 if (previousMessageBody.equals(this.cursor.getString(MESSAGE_BODY_POSITION))) {
                     continue;
                 }
-                //If regular expression for the bank does not match the sender name, continue
-                if (!Pattern.compile(this.BANK_REGULAR_EXPRESSION).matcher(this.cursor.getString(SENDER_NAME_POSITION)).find()) {
-                    continue;
-                }
 
                 //Check if month and year is equal to the selected month and the current year, if not then continue
                 Date d = new Date(this.cursor.getLong(DATE_POSITION));
@@ -52,6 +54,10 @@ public class BankMessageLoader {
                 String messageMonth = new SimpleDateFormat("MMM").format(d);
 
                 if (!(month.equals(messageMonth) && currYear.equals(messageYear))) {
+                    continue;
+                }
+                //If regular expression for the bank does not match the sender name, continue
+                if (!Pattern.compile(this.BANK_REGULAR_EXPRESSION).matcher(this.cursor.getString(SENDER_NAME_POSITION)).find()) {
                     continue;
                 }
 
@@ -69,7 +75,10 @@ public class BankMessageLoader {
                 //Get the date from the cursor and store it into the BankMessage object
                 Date date = new Date(this.cursor.getLong(DATE_POSITION));
                 bankMessage.setDateSent((new SimpleDateFormat("dd/MM/yyyy")).format(date));
-                bankMessage.setMonthSent((new SimpleDateFormat("MMM")).format(date));
+
+                //make a variable for the month so it can be used with the month_amount_map
+                String monthInMMM = (new SimpleDateFormat("MMM")).format(date);
+                bankMessage.setMonthSent(monthInMMM);
                 bankMessage.setYearSent((new SimpleDateFormat("yyyy")).format(date));
 
                 //Check if message body DOES NOT contains "debited"
@@ -87,7 +96,8 @@ public class BankMessageLoader {
 
                     //if we find the amount then set it to the BankMessage object
                     if (matcher.find()) {
-                        bankMessage.setAmount(Double.parseDouble(matcher.group().substring(2)));
+                        double amount = Double.parseDouble(matcher.group().substring(2));
+                        bankMessage.setAmount(amount);
 
                         //Matcher object to find out with whom the transaction was done
                         Matcher matcher1 = Pattern.compile("to .+?(?= Ref)").matcher(bankMessage.getMessageBody());
@@ -101,6 +111,8 @@ public class BankMessageLoader {
                     }
                 }
             } while (this.cursor.moveToNext());
+
+        //return the filled arrayList
         return arrayList;
     }
 }
